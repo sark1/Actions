@@ -7,6 +7,10 @@ on:
         type: string
 jobs:
   Build:
-    if: ${{inputs.dockerimage}} == 'java1_8-maven' 
-    uses: sark1/Actions/.github/workflows/main-build.yml@main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: check
+        if: ${{inputs.dockerimage}} == 'java1_8-maven' 
+        uses: sark1/Actions/.github/workflows/main-build.yml@main
     
