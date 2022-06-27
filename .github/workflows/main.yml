@@ -10,9 +10,9 @@ jobs:
 
       - name: Run a one-line script
         run: echo Hello, world!
-  compile: 
+  read: 
     uses: sark1/Actions/.github/workflows/pipelineconfig.yml@main
-    - name: Build
+  compile:
       uses: sark1/Actions/.github/workflows/java11-maven.yml@main
     
 
