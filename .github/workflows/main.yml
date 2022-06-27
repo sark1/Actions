@@ -2,6 +2,27 @@ name: main
 on: 
   workflow_dispatch:
 jobs:
+  do-it:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: echo Hello, world!
   Build:
     uses: sark1/Actions/.github/workflows/main-build.yml@main
     
+  Dev-Deploy:
+    name: Deploy to Dev 
+    if: github.event_name == 'pull_request'
+    needs: [Build]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Development
+      url: 'https://github.com/sark1/Actions/tree/development'
+    steps:
+      - name: Deploy
+        run: echo Dev-deploying! 
+    
+  
