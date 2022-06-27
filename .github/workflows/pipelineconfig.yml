@@ -1,6 +1,11 @@
 name: pipelineconfig
 on:
   workflow_call:
+    outputs:
+      language: 
+        value: ${{ jobs.job.outputs.output1 }}
+      build_tool:
+        value: ${{ jobs.job.outputs.output2 }}
 jobs: 
   do-it:
     runs-on: ubuntu-latest
@@ -10,3 +15,14 @@ jobs:
 
       - name: Run a one-line script
         run: echo Hello, world!!
+  job:
+    name: task
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.outputs.language }}
+      outout2: ${{ steps.step1.outputs.build_tool }}
+    steps:
+      - id: step1
+        run: echo "::set-output name=language::'java'"
+      - id: step2
+        run: echo "::set-output name=build_tool::'maven'"
