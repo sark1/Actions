@@ -1,0 +1,17 @@
+name: caller
+on: 
+  workflow_dispatch: 
+jobs:
+  do-it:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+callin:
+  uses: sark1/Actions/.github/workflows/main.yml@main
+  with:
+    docekrimage: 'java1_8-maven' 
+  
