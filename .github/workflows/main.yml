@@ -13,7 +13,7 @@ jobs:
   read: 
     uses: sark1/Actions/.github/workflows/pipelineconfig.yml@main
   compile:
-      uses: sark1/Actions/.github/workflows/java11-maven.yml@main
+    uses: sark1/Actions/.github/workflows/java11-maven.yml@main
     
 
   
