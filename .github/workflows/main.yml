@@ -1,12 +1,7 @@
 name: main
 on: 
-  workflow_call: 
-    inputs:
-      dockerimage:
-        required: true
-        type: string
+  workflow_dispatch:
 jobs:
   Build:
-    if: ${{inputs.dockerimage}} == 'java1_8-maven' 
     uses: sark1/Actions/.github/workflows/main-build.yml@main
     
