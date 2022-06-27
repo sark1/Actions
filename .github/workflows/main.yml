@@ -23,6 +23,7 @@ jobs:
       url: 'https://github.com/sark1/Actions/tree/development'
     steps:
       - name: Deploy
-        run: echo Dev-deploying! 
+        run: |
+          mkdir file1.txt
     
   
