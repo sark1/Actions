@@ -10,21 +10,10 @@ jobs:
 
       - name: Run a one-line script
         run: echo Hello, world!
-  Build:
-    uses: sark1/Actions/.github/workflows/java11-maven.yml@main
+  compile: 
+    uses: sark1/Actions/.github/workflows/pipelineconfig.yml@main
+    - name: Build
+      uses: sark1/Actions/.github/workflows/java11-maven.yml@main
     
-  Dev-Deploy:
-    name: Deploy to Dev 
-    if: github.event_name == 'workflow_dispatch'
-    needs: [Build]
-    runs-on: ubuntu-latest
-    environment: 
-      name: Development
-      url: 'https://github.com/sark1/Actions/tree/development'
-    steps:
-      - name: Deploy
-        shell: sh
-        run: |
-          mkdir file1.txt
-    
+
   
