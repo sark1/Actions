@@ -15,7 +15,7 @@ jobs:
     
   Dev-Deploy:
     name: Deploy to Dev 
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'workflow_dispatch'
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
