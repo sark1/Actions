@@ -2,10 +2,18 @@ name: pipelineconfig
 on:
   workflow_call:
     outputs:
-      language: 
+      pipelineType: 
         value: ${{ jobs.job.outputs.output1 }}
-      build_tool:
+      language:
         value: ${{ jobs.job.outputs.output2 }}
+      build_tool:
+        value: ${{ jobs.job.outputs.output3 }}
+      appName:
+        value: ${{ jobs.job.outputs.output4 }}
+      ZipFileName:
+        value: ${{ jobs.job.outputs.output5 }}
+      TargetFileType:
+        value: ${{ jobs.job.outputs.output6 }}
 jobs: 
   do-it:
     runs-on: ubuntu-latest
@@ -14,15 +22,27 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run a one-line script
-        run: echo Hello, world!!
+        run: echo PIPELINE CONFIGURATION !
   job:
     name: task
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.step1.outputs.language }}
-      outout2: ${{ steps.step1.outputs.build_tool }}
+      output1: ${{ steps.step1.outputs.pipelineType }}
+      outout2: ${{ steps.step2.outputs.language }}
+      outout3: ${{ steps.step3.outputs.buildTool }}
+      outout4: ${{ steps.step4.outputs.appName }}
+      outout5: ${{ steps.step5.outputs.ZipFileName }}
+      outout6: ${{ steps.step6.outputs.TargetFileType }}
     steps:
       - id: step1
-        run: echo "::set-output name=language::'java'"
+        run: echo "::set-output name=pipelineType::'awsEBS'"
       - id: step2
-        run: echo "::set-output name=build_tool::'maven'"
+        run: echo "::set-output name=language::'java8'"
+      - id: step3
+        run: echo "::set-output name=buildTool::'java'"
+      - id: step4
+        run: echo "::set-output name=appName::'abcd'"
+      - id: step5
+        run: echo "::set-output name=ZipFileName::'zip'"
+      - id: step6
+        run: echo "::set-output name=TargetFileType::'zip'"
