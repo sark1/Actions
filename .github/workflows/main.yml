@@ -10,11 +10,7 @@ jobs:
   compile:
     needs: inputs 
     if: ${{ (needs.inputs.outputs.build_tool == 'maven') && (needs.inputs.outputs.language != 'java8') }}
-    runs-on: ubuntu-latest
-    steps:
-       - uses: actions/checkout@v3
-       - name: build
-         uses: sark1/Actions/.github/workflows/java1_8-maven.yml@main
+    uses: sark1/Actions/.github/workflows/java1_8-maven.yml@main
    
   
 
