@@ -9,11 +9,11 @@ jobs:
     
   compile:
     needs: [inputs]
-    if: "contains(needs.inputs.outputs.output2, 'java8')"
+    if: "contains(needs.inputs.outputs.output3, 'maven') && (needs.inputs.outputs.output2, 'java8')"
     uses: sark1/Actions/.github/workflows/java1_8-maven.yml@main
   Code-Quality:
     runs-on: ubuntu-latest
-
+    needs: [compile]
     steps:
        - uses: actions/checkout@v3
        - name: code Analysis
