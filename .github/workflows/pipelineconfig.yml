@@ -15,14 +15,6 @@ on:
       TargetFileType:
         value: ${{ jobs.job.outputs.output6 }}
 jobs: 
-  do-it:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Run a one-line script
-        run: echo PIPELINE CONFIGURATION !
   job:
     name: task
     runs-on: ubuntu-latest
