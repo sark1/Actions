@@ -9,7 +9,7 @@ jobs:
     
   compile:
     needs: inputs 
-    if: ${{ (needs.inputs.outputs.build_tool == 'maven') && (needs.inputs.outputs.language == 'java8') }}
+    if: "contains(needs.inputs.outputs.build_tool, 'maven')" && "contains(needs.inputs.outputs.language == 'java8')"
     uses: sark1/Actions/.github/workflows/java1_8-maven.yml@main
    
   
