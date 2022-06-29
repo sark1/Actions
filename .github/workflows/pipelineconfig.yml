@@ -39,7 +39,7 @@ jobs:
       - id: step2
         run: echo "::set-output name=language::'java8'"
       - id: step3
-        run: echo "::set-output name=buildTool::'java'"
+        run: echo "::set-output name=buildTool::'maven'"
       - id: step4
         run: echo "::set-output name=appName::'abcd'"
       - id: step5
