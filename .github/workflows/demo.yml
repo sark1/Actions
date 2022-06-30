@@ -17,5 +17,11 @@ jobs:
     if: ${{ 'a' }} == 'a'
     steps:
       - run: echo job2
+  job3:
+    runs-on: ubuntu-latest
+    if: ${{ 'a' }} == 'a' && ${{ 'b' }} == b
+    steps:
+      - run: echo job3
+  
 
     
