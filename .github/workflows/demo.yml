@@ -12,5 +12,10 @@ jobs:
     if: ${{ 'a' == 'a'}} 
     steps:
       - run: echo job1
+  job2:
+    runs-on: ubuntu-latest
+    if: ${{ 'a' }} == 'a'
+    steps:
+      - run: echo job2
 
     
