@@ -9,6 +9,6 @@ jobs:
     
   compile:
     needs: [inputs] 
-    if: "contains(needs.inputs.outputs.build_tool, 'maven')"
+    if: "contains(needs.inputs.outputs.language, 'java')"
     uses: sark1/Actions/.github/workflows/java1_8-maven.yml@main
  
