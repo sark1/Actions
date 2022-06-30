@@ -15,7 +15,7 @@ on:
       TargetFileType:
         value: ${{ jobs.job.outputs.output6 }}
       language_version:
-        value: ${{ jobs.job.outputs.output6 }}
+        value: ${{ jobs.job.outputs.output7 }}
 jobs: 
   job:
     name: task
@@ -27,7 +27,7 @@ jobs:
       outout4: ${{ steps.step4.outputs.appName }}
       outout5: ${{ steps.step5.outputs.ZipFileName }}
       outout6: ${{ steps.step6.outputs.TargetFileType }}
-      outout7: ${{ steps.step6.outputs.language_version }}
+      outout7: ${{ steps.step7.outputs.language_version }}
     steps:
       - id: step1
         run: echo "::set-output name=pipelineType::'awsEBS'"
