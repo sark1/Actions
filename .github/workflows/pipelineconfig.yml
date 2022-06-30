@@ -23,7 +23,7 @@ jobs:
     outputs:
       output1: ${{ steps.step1.outputs.pipelineType }}
       outout2: ${{ steps.step2.outputs.language }}
-      outout3: ${{ steps.step3.outputs.buildTool }}
+      outout3: ${{ steps.step3.outputs.build_tool }}
       outout4: ${{ steps.step4.outputs.appName }}
       outout5: ${{ steps.step5.outputs.ZipFileName }}
       outout6: ${{ steps.step6.outputs.TargetFileType }}
@@ -34,7 +34,7 @@ jobs:
       - id: step2
         run: echo "::set-output name=language::'java'"
       - id: step3
-        run: echo "::set-output name=buildTool::'maven'"
+        run: echo "::set-output name=build_tool::'maven'"
       - id: step4
         run: echo "::set-output name=appName::'abcd'"
       - id: step5
