@@ -26,7 +26,12 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ 'a' }} == 'a' && ${{ 'b' }} == 'c'
     steps:
-      - run: echo job3
+      - run: echo job4
+  job5:
+    runs-on: ubuntu-latest
+    if: "contains('a', 'a')"
+    steps:
+      - run: echo job5
   
   
 
