@@ -14,6 +14,8 @@ on:
         value: ${{ jobs.job.outputs.output5 }}
       TargetFileType:
         value: ${{ jobs.job.outputs.output6 }}
+      language_version:
+        value: ${{ jobs.job.outputs.output6 }}
 jobs: 
   job:
     name: task
@@ -25,11 +27,12 @@ jobs:
       outout4: ${{ steps.step4.outputs.appName }}
       outout5: ${{ steps.step5.outputs.ZipFileName }}
       outout6: ${{ steps.step6.outputs.TargetFileType }}
+      outout7: ${{ steps.step6.outputs.language_version }}
     steps:
       - id: step1
         run: echo "::set-output name=pipelineType::'awsEBS'"
       - id: step2
-        run: echo "::set-output name=language::'java8'"
+        run: echo "::set-output name=language::'java'"
       - id: step3
         run: echo "::set-output name=buildTool::'maven'"
       - id: step4
@@ -38,3 +41,5 @@ jobs:
         run: echo "::set-output name=ZipFileName::'zip'"
       - id: step6
         run: echo "::set-output name=TargetFileType::'zip'"
+      - id: step7
+        run: echo "::set-output name=language_version::'8'"
