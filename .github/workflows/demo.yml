@@ -2,37 +2,13 @@ name: demo
 on:
   workflow_dispatch:
 jobs:
-  job:
-    runs-on: ubuntu-latest
-    steps: 
-      - uses: actions/checkout@v3
-      - run: echo job
-  job1:
-    runs-on: ubuntu-latest
-    if: ${{ 'a' == 'a'}} 
-    steps:
-      - run: echo job1
-  job2:
-    runs-on: ubuntu-latest
-    if: ${{ 'a' }} == 'a'
-    steps:
-      - run: echo job2
-  job3:
-    runs-on: ubuntu-latest
-    if: ${{ 'a' }} == 'a' && ${{ 'b' }} == b
-    steps:
-      - run: echo job3
-  job4:
-    runs-on: ubuntu-latest
-    if: ${{ 'a' }} == 'a' && ${{ 'b' }} == 'c'
-    steps:
-      - run: echo job4
-  job5:
-    runs-on: ubuntu-latest
-    if: "contains('a', 'a') && contains('b', 'c') && contains('d', 'd')"
-    steps:
-      - run: echo job5
-  
+  inputs:
+    uses: sark1/Actions/.github/workflows/pipelineconfig.yml@main
+    
+  compile:
+    needs: [inputs] 
+    if: "contains(needs.inputs.outputs.language, 'java')"
+    uses: sark1/Actions/.github/workflows/java1_8-maven.yml@main
   
 
     
