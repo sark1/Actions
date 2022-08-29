@@ -11,3 +11,4 @@ jobs:
     steps:
     
       - run: echo print
+        if: ${{ github.event.ref != 'refs/heads/feature'}}
