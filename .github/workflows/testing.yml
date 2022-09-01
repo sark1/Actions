@@ -8,7 +8,11 @@ jobs:
     steps:
       - run: |
             echo ${{ github.event.repository.name }}
-            echo $(basename ${{ github.event.ref }})\
+            echo $(basename ${{ github.event.ref }})
+      - shell: bash
+        run: |
             echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      - shell: bash
+        run: |
             echo  ${GITHUB_REF}
             
