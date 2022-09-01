@@ -4,11 +4,22 @@ on:
   
 jobs:
   job1-f:
-    if: ${{ github.event.ref != 'refs/heads/feature'}} && ${{ github.event.ref != 'refs/heads/develop' }}
-    # if: contains(github.event.ref,master'
-    #if: contains(github.event.ref ,'main')
     runs-on: ubuntu-latest
     steps:
-    
-      - run: echo print
-     
+      - run: |
+            echo ${{ github.event.repository.name }}
+            echo $(basename ${{ github.event.ref }})
+      - shell: bash
+        run: |
+            echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      - shell: bash
+        run: |
+            echo  ${GITHUB_REF}
+      - shell: bash
+        run: |
+            echo ${GITHUB_REF##*/}
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      - run: echo ${{ steps.extract_branch.outputs.branch }}
