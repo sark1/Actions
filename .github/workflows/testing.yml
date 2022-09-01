@@ -9,5 +9,5 @@ jobs:
       - run: |
             echo ${{ github.event.repository.name }}
             echo $(basename ${{ github.event.ref }})
-            echo $(basename ${{ github_ref }})
+            echo ${{ GITHUB_REF }}
             
