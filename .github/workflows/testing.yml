@@ -15,4 +15,7 @@ jobs:
       - shell: bash
         run: |
             echo  ${GITHUB_REF}
+      - shell: bash
+        run: |
+            echo ${GITHUB_REF##*/}
             
