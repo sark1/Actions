@@ -23,10 +23,8 @@ jobs:
        github.event.ref == 'refs/heads/main' 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/cache@v3
-        with:
-          path: ./*
-          key: ${{github.sha}}
+      
+    
       - run: |
               ls -ltr
               
@@ -54,7 +52,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: ${{github.sha}}
+          key: ${{github.run_id}}
   build:
     needs: build-prod
     if: |
@@ -65,7 +63,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: ${{github.sha}}
+          key: ${{github.run_id}}
       - run: ls -ltr
       - run: cat text1.txt
       - run: cat text2.txt
