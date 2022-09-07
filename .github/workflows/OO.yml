@@ -1,7 +1,7 @@
 name: oo
-on: [workflow_dispatch]
+on: [workflow_dispatch,push]
 jobs:
-  build-me:
+  feature:
   
     if: |
        github.event.ref == 'refs/heads/main' 
@@ -11,5 +11,41 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: c3dbeba373683e35a048344e0ff7e7724cec1ceb
+          key: 3008093017-feature
+      - run: ls -ltr
+  develop:
+  
+    if: |
+       github.event.ref == 'refs/heads/main' 
+    runs-on: ubuntu-latest
+    steps:
+      
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: 3008093017-develop
+      - run: ls -ltr
+  prod:
+  
+    if: |
+       github.event.ref == 'refs/heads/main' 
+    runs-on: ubuntu-latest
+    steps:
+      
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: 3008093017-prod
+      - run: ls -ltr
+  test:
+  
+    if: |
+       github.event.ref == 'refs/heads/main' 
+    runs-on: ubuntu-latest
+    steps:
+      
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: 3008093017-test
       - run: ls -ltr
