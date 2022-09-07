@@ -32,7 +32,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: sub
+          key: ${{github.sha}}
   build-prod:
     if: |
        github.event.ref == 'refs/heads/main' 
@@ -42,14 +42,15 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: sub
+          key: ${{github.sha}}
+          
       - run: |
             echo 'prod' > text2.txt
             ls -ltr
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: sub
+          key: ${{github.sha}}
   build:
     if: |
        github.event.ref == 'refs/heads/main' 
@@ -59,7 +60,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: sub
+          key: ${{github.sha}}
       - run: ls -ltr
       - run: cat text1.txt
       - run: cat text2.txt
