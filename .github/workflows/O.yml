@@ -26,7 +26,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: sub
+          key: ${{github.sha}}
       - run: |
               ls -ltr
               
@@ -49,7 +49,7 @@ jobs:
           key: ${{github.sha}}
           
       - run: |
-            echo 'prod' > text3.txt
+            echo 'prod' > text2.txt
             ls -ltr
       - uses: actions/cache@v3
         with:
