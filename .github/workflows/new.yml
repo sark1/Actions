@@ -1,13 +1,5 @@
 name: Pipeline
 on: 
-  push:
-   branches: 
-   - main
-   - master
-   - develop
-   - 'feature/**'
-   - 'feature*'
-   
    
   pull_request:
     types: [synchronize]
