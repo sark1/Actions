@@ -12,7 +12,7 @@ on:
     - main
 jobs: 
 
-  build-test:
+  feature:
     
     if: |
        github.event.ref == 'refs/heads/main' 
@@ -25,14 +25,14 @@ jobs:
               echo ${{ github.sha }}
               echo ${{ github.run_id }}
               echo ${{ github.run_number }}
-              echo 'feature' > text1.txt
+              echo 'feature' > feature.txt
               ls -ltr
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: "${{github.sha}}-test"
-  build-prod:
-    needs: build-test
+          key: "${{github.run_id}}-feature"
+  develop:
+    needs: feature
     if: |
        github.event.ref == 'refs/heads/main' 
     runs-on: ubuntu-latest
@@ -41,17 +41,17 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: ${{github.sha}}
+          key: "${{github.run_id}}-develop"
           
       - run: |
-            echo 'prod' > text2.txt
+            echo 'develop' > develop.txt
             ls -ltr
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: ${{github.run_id}}
-  build:
-    needs: build-prod
+          key: "${{github.run_id}}-develop"
+  prod:
+    needs: develop
     if: |
        github.event.ref == 'refs/heads/main' 
     runs-on: ubuntu-latest
@@ -60,12 +60,16 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: ${{github.run_id}}
+          key: "${{github.run_id}}-prod"
       - run: ls -ltr
-      - run: cat text1.txt
-      - run: cat text2.txt
-  build-me:
-    needs: build
+      - run: echo 'prod' > prod.txt
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: "${{github.run_id}}-prod"
+      
+  Test:
+    needs: feature
     if: |
        github.event.ref == 'refs/heads/main' 
     runs-on: ubuntu-latest
@@ -74,7 +78,11 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: sub
+          key: "${{github.run_id}}-prod"
       - run: ls -ltr
-      
+      - run: echo 'test' > test.txt
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: "${{github.run_id}}-test"
       
