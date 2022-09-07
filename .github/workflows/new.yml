@@ -28,4 +28,36 @@ jobs:
        github.event.ref == 'refs/heads/main' 
     runs-on: ubuntu-latest
     steps:
-      - run: echo feature
+      - run: echo 'feature' > text1.txt
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: sub
+  build-prod:
+    if: |
+       github.event.ref == 'refs/heads/main' 
+    runs-on: ubuntu-latest
+    steps:
+      
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: sub
+      - run: echo 'prod' > text2.txt
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: sub
+  build:
+    if: |
+       github.event.ref == 'refs/heads/main' 
+    runs-on: ubuntu-latest
+    steps:
+      
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: sub
+      - run: cat text1.txt
+      - run: cat text2.txt
+      
