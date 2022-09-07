@@ -28,7 +28,9 @@ jobs:
        github.event.ref == 'refs/heads/main' 
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'feature' > text1.txt
+      - run: |
+              echo 'feature' > text1.txt
+              ls -ltr
       - uses: actions/cache@v3
         with:
           path: ./*
@@ -43,7 +45,9 @@ jobs:
         with:
           path: ./*
           key: sub
-      - run: echo 'prod' > text2.txt
+      - run: |
+            echo 'prod' > text2.txt
+            ls -ltr
       - uses: actions/cache@v3
         with:
           path: ./*
@@ -58,6 +62,7 @@ jobs:
         with:
           path: ./*
           key: sub
+      - run: ls -ltr
       - run: cat text1.txt
       - run: cat text2.txt
       
