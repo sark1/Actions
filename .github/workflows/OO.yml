@@ -1,6 +1,52 @@
 name: oo
 on: [workflow_dispatch,push]
 jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo 'demo' > demo.txt
+          ls -ltr
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: ${{github.sha}}
+          update: true
+  demo1:
+    runs-on: ubuntu-latest
+    needs: demo
+    steps:
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: ${{github.sha}}
+          update: true
+      - run: |
+          echo 'demo' > demo2.txt
+          ls -ltr
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: ${{github.sha}}
+          update: true
+  demo2:
+    runs-on: ubuntu-latest
+    needs: demo1
+    steps:
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: ${{github.sha}}
+          update: true
+      - run: |
+          ls -ltr
+          echo 'demo' > demo3.txt
+          ls -ltr
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: ${{github.sha}}
+          update: true
   feature:
   
     if: |
@@ -12,6 +58,7 @@ jobs:
         with:
           path: ./*
           key: 3008093017-feature
+          update: tru
       - run: ls -ltr
   develop:
   
