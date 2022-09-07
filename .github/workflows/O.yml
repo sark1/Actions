@@ -27,7 +27,9 @@ jobs:
     
       - run: |
               ls -ltr
-              
+              echo ${{ github.sha }}
+              echo ${{ github.run_id }}
+              echo ${{ github.run_number }}
               echo 'feature' > text1.txt
               ls -ltr
       - uses: actions/cache@v3
