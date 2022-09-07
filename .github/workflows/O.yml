@@ -29,6 +29,8 @@ jobs:
           key: sub
       - run: |
               ls -ltr
+              echo ${{github.sha}}
+              echo ${{github.run_id}}
               echo 'feature' > text1.txt
               ls -ltr
       - uses: actions/cache@v3
