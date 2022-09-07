@@ -28,6 +28,7 @@ jobs:
           path: ./*
           key: sub
       - run: |
+              ls -ltr
               echo 'feature' > text1.txt
               ls -ltr
       - uses: actions/cache@v3
