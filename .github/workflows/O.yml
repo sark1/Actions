@@ -1,12 +1,7 @@
 name: O
 on: 
-  push:
-   branches: 
-   - main
-   - master
-   - develop
-   - 'feature/**'
-   - 'feature*'
+  workflow_dispatch:
+    
    
    
   pull_request:
@@ -35,7 +30,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ./*
-          key: ${{github.sha}}
+          key: "${{github.sha}}-test"
   build-prod:
     needs: build-test
     if: |
