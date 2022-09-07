@@ -48,7 +48,7 @@ jobs:
           key: ${{github.sha}}
           
       - run: |
-            echo 'prod' > text2.txt
+            echo 'prod' > text3.txt
             ls -ltr
       - uses: actions/cache@v3
         with:
