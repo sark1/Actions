@@ -1,0 +1,15 @@
+name: oo
+on: push
+jobs:
+  build-me:
+    needs: build
+    if: |
+       github.event.ref == 'refs/heads/main' 
+    runs-on: ubuntu-latest
+    steps:
+      
+      - uses: actions/cache@v3
+        with:
+          path: ./*
+          key: sub
+      - run: ls -ltr
