@@ -1,0 +1,22 @@
+name: ooo
+on: 
+  push:
+jobs:
+  job1: 
+    runs-on: ubuntu-latest
+    steps:
+      -uses: actions/checkout@v3
+      - run: echo "Subhajit" > subhajit.txt
+      - uses: actions/cache@v3
+        with:
+          path: "./*"
+          key: "${{ github.run_id }}-dev"
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      -uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: "./*"
+          key: "${{ github.run_id }}-dev"
+      - run: ls -ltr
