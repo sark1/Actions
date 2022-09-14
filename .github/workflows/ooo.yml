@@ -10,7 +10,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: "./*"
-          key: "${{ github.run_id }}-dev"
+          key: "${{ github.sha }}-dev"
   job2:
     runs-on: ubuntu-latest
     steps:
@@ -18,5 +18,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: "./*"
-          key: "${{ github.run_id }}-dev"
-      - run: ls -ltr
+          key: "${{ github.sha }}-dev"
+      - run: |
+            ls -ltr
+            cat subhajit.txt
